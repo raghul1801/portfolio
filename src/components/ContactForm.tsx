@@ -31,11 +31,34 @@ export default function ContactForm() {
 
     setStatus("submitting");
 
-    // Simulate API Submission
-    setTimeout(() => {
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-    }, 1500);
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/raghulsridaran1804@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New Portfolio Message from ${formData.name}`
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success === "true") {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus("error");
+        setErrorMessage(data.message || "Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage("An error occurred. Please check your connection and try again.");
+    }
   };
 
   return (
