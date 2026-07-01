@@ -18,7 +18,11 @@ import {
   GraduationCap,
   Trophy,
   Cpu,
-  ArrowUp
+  ArrowUp,
+  Phone,
+  Brain,
+  Utensils,
+  MapPin
 } from "lucide-react";
 import RotatingTitles from "@/components/RotatingTitles";
 import Timeline from "@/components/Timeline";
@@ -124,7 +128,7 @@ export default function Home() {
   };
 
   // Scroll Progress Indicator for Education/Timeline
-  const [aboutElement, setAboutElement] = useState<HTMLDivElement | null>(null);
+  const [aboutElement, setAboutElement] = useState<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: aboutElement ? { current: aboutElement } : undefined,
     offset: ["start end", "end end"]
@@ -187,9 +191,9 @@ export default function Home() {
         { name: "HTML", level: 95 },
         { name: "CSS", level: 90 },
         { name: "JavaScript", level: 88 },
-        { name: "React", level: 85 },
+        { name: "React.js", level: 85 },
         { name: "Next.js", level: 82 },
-        { name: "Tailwind", level: 90 }
+        { name: "Tailwind CSS", level: 90 }
       ],
       glow: "group-hover:border-blue-500/30",
       stroke: "stroke-blue-500"
@@ -199,16 +203,19 @@ export default function Home() {
       icon: <Monitor className="h-5 w-5 text-emerald-400" />,
       skills: [
         { name: "Python", level: 85 },
+        { name: "Java", level: 80 },
         { name: "C", level: 80 },
         { name: "C++", level: 75 },
         { name: "SQL", level: 82 },
-        { name: "TypeScript", level: 80 }
+        { name: "TypeScript", level: 80 },
+        { name: "Django", level: 85 },
+        { name: "Eclipse IDE", level: 75 }
       ],
       glow: "group-hover:border-emerald-500/30",
       stroke: "stroke-emerald-500"
     },
     {
-      category: "DevOps",
+      category: "System Administration",
       icon: <Server className="h-5 w-5 text-orange-400" />,
       skills: [
         { name: "Ubuntu", level: 80 },
@@ -261,28 +268,28 @@ export default function Home() {
       demoUrl: "https://github.com/tsraghul"
     },
     {
-      title: "Fit Fusion",
-      category: "UI/UX Design",
+      title: "Thought Capsule with AI Integration",
+      category: "AI Web Application",
       description:
-        "Created a modern fitness tracking application with responsive mobile layouts, workout logging, progress visualization, step tracking, and intuitive navigation using Figma.",
-      longDescription: "Fit Fusion is a responsive workout assistant. Designed with pixel-perfect visual grids, reusable components, and auto-layouts. The workflow includes high-fidelity prototype flows, workout builders, step visualizers, calorie counters, and user dashboards.",
-      technologies: ["Figma", "Auto Layout", "Variants", "Responsive Layouts", "Prototyping", "Design Systems"],
-      icon: <FigmaIcon className="h-5 w-5" />,
-      gradient: "from-violet-600 to-pink-600",
-      githubUrl: "https://figma.com",
-      demoUrl: "https://figma.com"
+        "Built an AI-powered digital journaling platform capable of analyzing 10+ emotions with AI-powered summarization and sentiment detection.",
+      longDescription: "Thought Capsule is a highly responsive AI-assisted journaling application. Built with security and user experience in mind, it provides sentiment analysis across ten distinct emotion classes. Features include automatic journaling summaries, emotion charts, secure user session management, and granular search filters.",
+      technologies: ["Django", "SQLite", "JavaScript", "HTML", "CSS"],
+      icon: <Brain className="h-5 w-5" />,
+      gradient: "from-purple-600 to-indigo-600",
+      githubUrl: "https://github.com/tsraghul",
+      demoUrl: "https://github.com/tsraghul"
     },
     {
-      title: "My Grocer",
-      category: "UI/UX Design",
+      title: "Simplicook",
+      category: "Full Stack Web",
       description:
-        "Designed an online grocery ordering application with product browsing, shopping cart, order tracking, interactive prototypes, reusable components, auto-layouts, and responsive interfaces.",
-      longDescription: "My Grocer is a complete conceptual grocery platform. It emphasizes friction-free search filter pipelines, cart summaries, and real-time delivery trackers. Built entirely utilizing responsive Figma variants, design tokens, and smooth component animations.",
-      technologies: ["Figma", "Auto Layout", "Design Systems", "Prototyping", "Components", "Variants"],
-      icon: <FigmaIcon className="h-5 w-5" />,
-      gradient: "from-emerald-600 to-teal-600",
-      githubUrl: "https://figma.com",
-      demoUrl: "https://figma.com"
+        "Built a recipe management platform supporting 30+ recipes with nutritional information, preparation time, serving size, and advanced multi-criteria filtering.",
+      longDescription: "Simplicook is a full-featured recipe directory and culinary manager. It includes nutritional breakdown, serving size adjusters, and complex search functionality to filter recipes by ingredients, prep time, and difficulty. Utilizes a Django REST Framework backend coupled with React for real-time reactivity.",
+      technologies: ["React", "Tailwind CSS", "Django REST Framework", "SQLite"],
+      icon: <Utensils className="h-5 w-5" />,
+      gradient: "from-rose-600 to-red-600",
+      githubUrl: "https://github.com/tsraghul",
+      demoUrl: "https://github.com/tsraghul"
     }
   ];
 
@@ -312,10 +319,10 @@ export default function Home() {
           <nav className="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest uppercase">
             <a href="#about" className="hover:text-white transition-colors cursor-pointer">About</a>
             <a href="#skills" className="hover:text-white transition-colors cursor-pointer">Skills</a>
-            <a href="#contributions" className="hover:text-white transition-colors cursor-pointer">Contributions</a>
+            <a href="#contributions" className="hover:text-white transition-colors cursor-pointer">Engagements</a>
             <a href="#projects" className="hover:text-white transition-colors cursor-pointer">Projects</a>
             <a href="#achievements" className="hover:text-white transition-colors cursor-pointer">Achievements</a>
-            <a href="#certifications" className="hover:text-white transition-colors cursor-pointer">Credentials</a>
+            <a href="#certifications" className="hover:text-white transition-colors cursor-pointer">Certifications</a>
             <a href="#contact" className="hover:text-white transition-colors cursor-pointer">Contact</a>
           </nav>
           <a
@@ -396,11 +403,8 @@ export default function Home() {
                 Contact Me
               </a>
               <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Resume download triggered (placeholder).");
-                }}
+                href="/resume.pdf"
+                download="T_S_Raghul_Resume.pdf"
                 className="flex items-center gap-2 px-6 py-4 rounded-full border border-zinc-800/80 hover:bg-zinc-900/40 text-zinc-400 hover:text-white transition-colors text-sm cursor-pointer"
               >
                 <span>Resume</span>
@@ -420,14 +424,59 @@ export default function Home() {
               onLoad={(splineApp) => {
                 console.log("Spline loaded successfully!");
                 try {
-                  const scene = splineApp.scene || splineApp._scene;
-                  if (scene) {
-                    console.log("Scene children:", scene.children ? scene.children.map((c: any) => c.name) : []);
+                  const leftArm = splineApp.findObjectByName("LEFT");
+                  const forearm = splineApp.findObjectByName("forearm");
+                  
+                  if (leftArm && forearm) {
+                    const initArmRot = { x: leftArm.rotation.x, y: leftArm.rotation.y, z: leftArm.rotation.z };
+                    const initForearmRot = { x: forearm.rotation.x, y: forearm.rotation.y, z: forearm.rotation.z };
+                    
+                    let startTime: number | null = null;
+                    const duration = 2800; // 2.8 seconds wave animation
+                    
+                    const animateWave = (timestamp: number) => {
+                      if (!startTime) startTime = timestamp;
+                      const elapsed = timestamp - startTime;
+                      
+                      if (elapsed < duration) {
+                        if (elapsed < 600) {
+                          // Phase 1: Lift arm (0ms to 600ms)
+                          const progress = elapsed / 600;
+                          leftArm.rotation.z = initArmRot.z + progress * (-1.0);
+                          leftArm.rotation.x = initArmRot.x + progress * 0.2;
+                        } else if (elapsed < 2200) {
+                          // Phase 2: Wave forearm back and forth (600ms to 2200ms)
+                          leftArm.rotation.z = initArmRot.z - 1.0;
+                          leftArm.rotation.x = initArmRot.x + 0.2;
+                          
+                          const waveTime = (elapsed - 600) / 1000 * Math.PI * 4; // 2 full waves
+                          forearm.rotation.y = initForearmRot.y + Math.sin(waveTime) * 0.5;
+                        } else {
+                          // Phase 3: Lower arm back (2200ms to 2800ms)
+                          const progress = (elapsed - 2200) / 600;
+                          leftArm.rotation.z = initArmRot.z - (1.0 - progress * 1.0);
+                          leftArm.rotation.x = initArmRot.x + (0.2 - progress * 0.2);
+                          forearm.rotation.y = initForearmRot.y + (forearm.rotation.y - initForearmRot.y) * (1 - progress);
+                        }
+                        requestAnimationFrame(animateWave);
+                      } else {
+                        // Reset to exact initial values
+                        leftArm.rotation.x = initArmRot.x;
+                        leftArm.rotation.y = initArmRot.y;
+                        leftArm.rotation.z = initArmRot.z;
+                        forearm.rotation.x = initForearmRot.x;
+                        forearm.rotation.y = initForearmRot.y;
+                        forearm.rotation.z = initForearmRot.z;
+                      }
+                    };
+                    
+                    // Trigger wave animation after a 1.2s delay to let the initial page entry load settle
+                    setTimeout(() => {
+                      requestAnimationFrame(animateWave);
+                    }, 1200);
                   }
-                  const objs = splineApp.getAllObjects ? splineApp.getAllObjects() : [];
-                  console.log("All Spline objects:", objs.map((o: any) => o.name || o.id));
                 } catch (err) {
-                  console.log("Error dumping objects:", err);
+                  console.log("Error running wave animation:", err);
                 }
               }}
             />
@@ -459,7 +508,7 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4 pt-6">
               <div className="p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/20 backdrop-blur-md">
                 <span className="text-3xl sm:text-4xl font-extrabold text-white block">
-                  <AnimatedCounter value={15} suffix="+" />
+                  <AnimatedCounter value={5} suffix="+" />
                 </span>
                 <span className="text-xs uppercase tracking-widest font-mono text-zinc-500 mt-2 block">
                   Projects Completed
@@ -470,7 +519,7 @@ export default function Home() {
                   <AnimatedCounter value={3} suffix="+" />
                 </span>
                 <span className="text-xs uppercase tracking-widest font-mono text-zinc-500 mt-2 block">
-                  Hackathon Awards
+                  Competition Awards
                 </span>
               </div>
               <div className="p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/20 backdrop-blur-md">
@@ -482,10 +531,10 @@ export default function Home() {
                 </span>
               </div>
               <div className="p-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/20 backdrop-blur-md">
-                <span className="text-3xl sm:text-4xl font-extrabold text-white block">
-                  <AnimatedCounter value={2} suffix="+" />
+                <span className="text-2xl sm:text-3xl font-extrabold text-white block uppercase tracking-wider font-heading">
+                  Fresher
                 </span>
-                <span className="text-xs uppercase tracking-widest font-mono text-zinc-500 mt-2 block">
+                <span className="text-xs uppercase tracking-widest font-mono text-zinc-500 mt-3 block">
                   Years Experience
                 </span>
               </div>
@@ -528,7 +577,7 @@ export default function Home() {
                     </span>
                     <div className="text-right">
                       <span className="text-[9px] uppercase tracking-wider font-mono text-zinc-500 block">CGPA</span>
-                      <span className="text-lg font-bold text-white font-mono">8.04</span>
+                      <span className="text-lg font-bold text-white font-mono">8.02</span>
                     </div>
                   </div>
                 </div>
@@ -600,7 +649,7 @@ export default function Home() {
             Practice & Execution
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading">
-            Professional Contributions
+            Professional Engagements
           </h2>
           <div className="h-1 w-16 bg-emerald-500 rounded" />
         </div>
@@ -831,7 +880,7 @@ export default function Home() {
       <section id="certifications" className="py-32 px-6 border-t border-zinc-900/40 relative z-10 max-w-7xl mx-auto overflow-hidden">
         <div className="space-y-4 mb-16">
           <span className="text-xs font-mono uppercase tracking-widest text-pink-400 block">
-            Credentials
+            Certifications
           </span>
           <h2 className="text-3xl sm:text-5xl font-bold text-white font-heading">
             Certifications
@@ -877,13 +926,14 @@ export default function Home() {
             </p>
           </div>
           
-          <button
-            onClick={() => alert("Resume download triggered (placeholder).")}
+          <a
+            href="/resume.pdf"
+            download="T_S_Raghul_Resume.pdf"
             className="flex items-center gap-3 px-8 py-4 rounded-full bg-white hover:bg-zinc-200 text-zinc-950 font-semibold transition-all shadow-lg shadow-white/5 cursor-pointer text-sm"
           >
             <Download className="h-5 w-5" />
             <span>Download Resume PDF</span>
-          </button>
+          </a>
         </div>
       </section>
 
@@ -912,15 +962,25 @@ export default function Home() {
 
             <div className="space-y-4 font-mono text-xs text-zinc-400">
               <div className="flex items-center gap-3">
+                <MapPin className="h-4 w-4 text-blue-400" />
+                <span>Chennai, Tamil Nadu</span>
+              </div>
+              <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-blue-400" />
-                <a href="mailto:raghul@mockemail.com" className="hover:text-white transition-colors">
-                  raghul@mockemail.com
+                <a href="mailto:raghulsridaran1804@gmail.com" className="hover:text-white transition-colors">
+                  raghulsridaran1804@gmail.com
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="h-4 w-4 text-blue-400" />
+                <a href="tel:+918754501002" className="hover:text-white transition-colors">
+                  +91 87545 01002
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <LinkedinIcon className="h-4 w-4 text-blue-400" />
-                <a href="https://linkedin.com/in/tsraghul" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  linkedin.com/in/tsraghul
+                <a href="https://linkedin.com/in/raghulsridaran" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  linkedin.com/in/raghulsridaran
                 </a>
               </div>
             </div>
@@ -935,7 +995,7 @@ export default function Home() {
                 <GithubIcon className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com/in/tsraghul"
+                href="https://linkedin.com/in/raghulsridaran"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full border border-zinc-800 bg-zinc-900/20 hover:border-zinc-700 text-zinc-450 hover:text-white transition-colors"

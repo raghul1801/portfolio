@@ -7,9 +7,10 @@ export default function RotatingTitles() {
   const roles = [
     "Computer Science Engineer",
     "UI/UX Designer",
-    "Frontend Developer",
-    "DevOps & Cloud Enthusiast",
-    "System Integration Specialist",
+    "Frontend Web Developer",
+    "React Developer",
+    "Django Developer",
+    "System Integration Engineer",
   ];
 
   const [index, setIndex] = useState(0);
